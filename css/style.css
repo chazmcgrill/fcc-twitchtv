@@ -19,14 +19,15 @@ h1 {
   margin: 40px auto;
   background: white;
   padding: 30px;
+  border-radius: 5px;
 }
 
 .row {
-  /*background: pink;*/
   display: flex;
-  /*justify-content: space-around;*/
   align-items: center;
   margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .title{
@@ -64,4 +65,8 @@ img {
 
 .handle {
   display: none;
+}
+
+.online {
+  background: lightgreen;
 }

@@ -49,7 +49,8 @@ document.addEventListener("DOMContentLoaded", function() {
             imgUrl = data.logo;
           }
           // build the rows with data
-          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + data.url + '">' + data.display_name + '</a></div><div class="status ' + status + '">' + status + '</div>';
+          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + data.url + '">' + data.display_name + '</a></div><div class="status">' + status + '</div>';
+          row.className = 'row ' + status;
 
         } else {
           console.log("ERROR FETCHING DATA");
@@ -70,12 +71,14 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("clicked");
   });
   document.getElementById("online-button").addEventListener("click", function(){
-    console.log("clicked");
-    var offClass = document.querySelectorAll('.offline').classList;
+    console.log("online clicked");
+    var offClass = document.querySelector('.offline').classList;
     offClass.add('handle');
   });
   document.getElementById("offline-button").addEventListener("click", function(){
-    console.log("clicked");
+    console.log("offline clicked");
+    var onClass = document.querySelector('.online').classList;
+    onClass.add('handle');
   });
 
 });
