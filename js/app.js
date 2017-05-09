@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-  var channelArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+  var channelArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
   var url = "https://wind-bow.glitch.me/twitch-api/"
   var channels = document.getElementById("container");
 
@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function() {
   channelArray.forEach(function(item){
     var status = "";
     var iconClass = "";
+    var channelName = "";
+    var channelUrl = "";
+    var currentStream = "";
+
     // status information request
     var requestStatus = new XMLHttpRequest();
 
@@ -18,9 +22,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if(dataStatus.stream === null){
           status = "offline";
           iconClass = "fa-times";
+          currentStream = "Currently offline"
         } else {
           status = "online";
           iconClass = "fa-check";
+          currentStream = dataStatus.stream.channel.status;
         }
         fetchData(item); // call rest of data once status collected.
       } else {
@@ -47,12 +53,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
           channels.appendChild(row);
           row.className = "row";
+          // channel not found check
+          if(dataChannel.display_name) {
+            channelName = dataChannel.display_name;
+            channelUrl = dataChannel.url;
+          } else {
+            status = "not-found";
+            iconClass = "fa-exclamation";
+            channelName = item;
+            channelUrl = "#"
+            currentStream = "Channel not found"
+          }
           // add logo
           if(dataChannel.logo) {
             imgUrl = dataChannel.logo;
           }
           // build the rows with data
-          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + dataChannel.url + '">' + dataChannel.display_name + '</a></div><div class="status"><i class="fa ' + iconClass + '" aria-hidden="true"></i></div>';
+          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + channelUrl + '">' + channelName + '</a><br><p>' + currentStream + '</p></div><div class="status"><i class="fa ' + iconClass + '" aria-hidden="true"></i></div>';
           row.className = 'row ' + status;
 
         } else {
@@ -73,10 +90,12 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("online-button").addEventListener("click", function(){
     removeHandle();
     addHandle('.offline');
+    addHandle('.not-found');
   });
   document.getElementById("offline-button").addEventListener("click", function(){
     removeHandle();
     addHandle('.online');
+    addHandle('.not-found');
   });
 
   // class manipulation functions

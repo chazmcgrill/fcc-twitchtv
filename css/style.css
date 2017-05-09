@@ -12,7 +12,7 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  background: lightseagreen;
+  background: #0AB2AA;
   font-family: sans-serif;
 }
 
@@ -43,11 +43,11 @@ img,
 
 .title,
 .status {
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .title {
-  width: 120px;
+  width: 130px;
 }
 
 .container {
@@ -83,11 +83,7 @@ img,
 
 .buttons:hover,
 a:hover {
-  color: lightseagreen;
-}
-
-.handle {
-  display: none;
+  color: #0AB2AA;
 }
 
 .fa-times {
@@ -98,6 +94,14 @@ a:hover {
   color: green;
 }
 
+.fa-exclamation {
+  color: orange;
+  padding-right: 3px;
+}
+
+.handle {
+  display: none;
+}
 
 /*footer*/
 
@@ -117,4 +121,25 @@ p {
   justify-content: space-around;
   height: 70px;
   text-align: center;
+}
+
+.fa-free-code-camp:hover {
+  color: #006500;
+}
+
+.fa-twitter:hover {
+  color: #55acee;
+}
+
+.fa-github:hover,
+.footer a:hover {
+  color: #292929;
+}
+
+.fa-linkedin:hover {
+  color: #007bb5;
+}
+
+.fa-codepen:hover {
+  color: #fff;
 }
