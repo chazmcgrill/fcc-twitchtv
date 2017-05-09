@@ -8,15 +8,14 @@ document.addEventListener("DOMContentLoaded", function() {
   channelArray.forEach(function(item){
     var status = "";
     var iconClass = "";
-
-    // Stream information request
+    // status information request
     var requestStatus = new XMLHttpRequest();
+
     requestStatus.open('GET', url + 'streams/' + item, true);
     requestStatus.onload = function() {
-
       if (this.status >= 200 && this.status < 400){
-        var dataB = JSON.parse(this.response);
-        if(dataB.stream === null){
+        var dataStatus = JSON.parse(this.response);
+        if(dataStatus.stream === null){
           status = "offline";
           iconClass = "fa-times";
         } else {
@@ -33,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     requestStatus.send();
 
+
     // Channel data request
     function fetchData(item){
       var requestChannel = new XMLHttpRequest();
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       requestChannel.onload = function() {
         if (this.status >= 200 && this.status < 400) {
-          var data = JSON.parse(this.response);
+          var dataChannel = JSON.parse(this.response);
           var row = document.createElement("div");
           var img = document.createElement("img");
           var imgUrl = "http://placehold.it/40x40"
@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
           channels.appendChild(row);
           row.className = "row";
           // add logo
-          if(data.logo) {
-            imgUrl = data.logo;
+          if(dataChannel.logo) {
+            imgUrl = dataChannel.logo;
           }
           // build the rows with data
-          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + data.url + '">' + data.display_name + '</a></div><div class="status"><i class="fa ' + iconClass + '" aria-hidden="true"></i></div>';
+          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + dataChannel.url + '">' + dataChannel.display_name + '</a></div><div class="status"><i class="fa ' + iconClass + '" aria-hidden="true"></i></div>';
           row.className = 'row ' + status;
 
         } else {
@@ -66,22 +66,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-
-  // Event listeners
-
-
+  // Button event listeners
   document.getElementById("all-button").addEventListener("click", function(){
-    console.log("clicked");
+    removeHandle();
   });
   document.getElementById("online-button").addEventListener("click", function(){
-    console.log("online clicked");
-    var offClass = document.querySelector('.offline').classList;
-    offClass.add('handle');
+    removeHandle();
+    addHandle('.offline');
   });
   document.getElementById("offline-button").addEventListener("click", function(){
-    console.log("offline clicked");
-    var onClass = document.querySelector('.online').classList;
-    onClass.add('handle');
+    removeHandle();
+    addHandle('.online');
   });
 
+  // class manipulation functions
+  function removeHandle(){
+    var elements = document.querySelectorAll('.row');
+    for(var i = 0; i < elements.length; i++){
+      elements[i].classList.remove('handle');
+    }
+  }
+
+  function addHandle(selector){
+    var elements = document.querySelectorAll(selector);
+    for(var i = 0; i < elements.length; i++){
+      elements[i].classList.add('handle');
+    }
+  }
 });
