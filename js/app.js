@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // loop through all default channels in array
   channelArray.forEach(function(item){
     var status = "";
+    var iconClass = "";
 
     // Stream information request
     var requestStatus = new XMLHttpRequest();
@@ -17,8 +18,10 @@ document.addEventListener("DOMContentLoaded", function() {
         var dataB = JSON.parse(this.response);
         if(dataB.stream === null){
           status = "offline";
+          iconClass = "fa-times";
         } else {
           status = "online";
+          iconClass = "fa-check";
         }
         fetchData(item); // call rest of data once status collected.
       } else {
@@ -49,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
             imgUrl = data.logo;
           }
           // build the rows with data
-          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + data.url + '">' + data.display_name + '</a></div><div class="status">' + status + '</div>';
+          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + data.url + '">' + data.display_name + '</a></div><div class="status"><i class="fa ' + iconClass + '" aria-hidden="true"></i></div>';
           row.className = 'row ' + status;
 
         } else {
