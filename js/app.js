@@ -53,14 +53,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
           channels.appendChild(row);
           row.className = "row";
+          channelName = dataChannel.display_name || item;
           // channel not found check
           if(dataChannel.display_name) {
-            channelName = dataChannel.display_name;
             channelUrl = dataChannel.url;
           } else {
             status = "not-found";
             iconClass = "fa-exclamation";
-            channelName = item;
             channelUrl = "#"
             currentStream = "Channel not found"
           }

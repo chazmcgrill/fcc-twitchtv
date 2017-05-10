@@ -123,23 +123,7 @@ p {
   text-align: center;
 }
 
-.fa-free-code-camp:hover {
-  color: #006500;
-}
-
-.fa-twitter:hover {
-  color: #55acee;
-}
-
-.fa-github:hover,
+.footer i:hover,
 .footer a:hover {
-  color: #292929;
-}
-
-.fa-linkedin:hover {
-  color: #007bb5;
-}
-
-.fa-codepen:hover {
   color: #fff;
 }
