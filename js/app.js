@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
           var dataChannel = JSON.parse(this.response);
           var row = document.createElement("div");
           var img = document.createElement("img");
-          var imgUrl = "http://placehold.it/40x40"
+          var imgUrl = "https://placeimg.com/40/40/tech/grayscale"
 
           channels.appendChild(row);
           row.className = "row";
