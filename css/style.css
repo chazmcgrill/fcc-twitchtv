@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:500,700');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +7,8 @@
 }
 
 html {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 500;
   height: 100%;
 }
 
@@ -13,7 +17,6 @@ body {
   display: flex;
   flex-direction: column;
   background: #0AB2AA;
-  font-family: sans-serif;
 }
 
 .content {
@@ -26,6 +29,7 @@ h1 {
 }
 
 a {
+  font-weight: 700;
   text-decoration: none;
   color: black;
 }
