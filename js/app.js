@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
             imgUrl = dataChannel.logo;
           }
           // build the rows with data
-          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + channelUrl + '">' + channelName + '</a><br><p>' + currentStream + '</p></div><div class="status"><i class="fa ' + iconClass + '" aria-hidden="true"></i></div>';
+          row.innerHTML = '<img src="' + imgUrl + '"><div class="title"><a href="' + channelUrl + '" target="_blank">' + channelName + '</a><br><p>' + currentStream + '</p></div><div class="status"><i class="fa ' + iconClass + '" aria-hidden="true"></i></div>';
           row.className = 'row ' + status;
 
         } else {
